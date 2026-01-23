@@ -1,0 +1,22 @@
+                DashBoard with Shadcn UI
+
+                Component was used
+1-themeprovider
+2-avatar
+2-button
+-DropdownMenu
+-input
+-navigation-menu
+-separator
+-Sheetsiebar --> Extends the Dialog component to display content that complements the main content of the screen.
+-collapsible
+-skeleton --> Use to show a placeholder while content is loading.
+
+-Tooltip --> A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+
+
+first add nav and AppSIder in layout.jxs
+
+sideOffset = {number define the space between the items}
+
+remember you can use the sidebar hook to generat your sidebar Trigger but recommended use sidebar Trigger

@@ -1,0 +1,773 @@
+/*
+Most component used 
+
+Button
+2-theme-provider
+3-dropdown-menu
+4-navigation-menu
+5-avatar
+6-sidebar
+
+
+
+
+*/
+
+
+
+              what does Mean radix UI and what is the relation between it and shadcn UI
+
+Radix UI is a library of unstyled, accessible, behavior-focused React components.
+
+Handles logic (open/close, keyboard navigation, focus trapping, etc.)
+✔ Handles accessibility (ARIA roles, tab behavior, screen readers, etc.)
+❌ Does not give you styles or design
+
+So Radix gives you components like:
+
+Dialog
+
+DropdownMenu
+
+Tabs
+
+Popover
+
+Tooltip
+
+Slider
+What is shadcn/ui?
+
+shadcn/ui is a component system built on top of Radix UI + Tailwind + nice design.
+
+Meaning:
+Uses Radix for logic + accessibility
+✔ Adds Tailwind styling + animations
+✔ Gives you copy-paste components you can customize
+✔ Follows a design system (colors, spacing, motion)
+
+So shadcn gives you components like:
+
+Button
+
+Input
+
+Dialog (styled on top of Radix Dialog)
+
+DropdownMenu (styled on top of Radix DM)
+
+Popover
+
+Tooltip
+
+Sheet
+etc.
+
+Also shadcn is not exactly "a library" — it's more like you install the source code in your project. Fully customizable.
+so here come shadcn Ui Turn it give the style to it 
+
+Radix UI builds accessible primitives; shadcn UI styles those primitives into polished components.
+
+                  How to Use shadcn UI
+// first downlad using npm 
+//second use npx shadcn@latest add theNameOFComponent
+
+// for example npx shadcn@latest add button in terminal
+// then import the ComponentYOUInstalled
+/*
+you can pass many attrs to know it go to the component and observe the varient obj and you will see the
+    attrs and the possible values forExample
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+        outline:
+          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        test:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/50",
+        ghost:
+          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-9 px-4 py-2 has-[>svg]:px-3",
+        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
+        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+        icon: "size-9",
+        "icon-sm": "size-8",
+        "icon-lg": "size-10",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+
+*/
+//------> Lucide for logos
+
+//-------> you can also change the theming
+/*
+First go to the global.css 
+then add the name of your property in root and the .dark then add it after the suit suffix in 
+
+    @theme inline --> forExample @theme inline{
+     Property
+
+    --suffix-nameUsedInClassName:var(nameOfProperty)
+    
+    }
+    after that you can use it as className like normal tawlind property or in any css file use var
+*/
+
+// as we know if you want to add a class name relyed on condition you can you it like this className = `bg-primary ${rounded && "theProperty"} ${disabled :"text-secondary" ? "text-primary"}`
+// ok it's god but you should use cn to keep up with another devs and more .........
+
+/*      How to use Cn
+Write that
+className= {cn(property or condition , "text-sm" ,disabled?"bg-accent":"bg-amber-100" , propery or condition )}
+    there is no any ترتيب but i writ for just example
+*/
+// className sr-only ----> mean don't appear for the uesr but appears for screens to provied the accessiblity 
+// asChild props ----> means the component will'not be renderd as a new element but the child is which be renderd with the same syled 
+// for example --> <Button varient=primary size=sm asChild><link href="/">Home </link></Button> the Link component is which will be renderd with the property of the button
+
+// to edit in the them follow the procider
+/*
+
+-First Download the next-theme use npm install next-themes
+
+-then Create a theme provider
+
+
+*/
+
+                    shadcn variant and Custom styling
+
+when you use any shadcn component you can go to its file and see in varient obj you can see the property you can use as attr and its values and you can add you custom 
+For example : 
+  const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+        outline:
+          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        test:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/50",
+        ghost:
+          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-9 px-4 py-2 has-[>svg]:px-3",
+        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
+        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+        icon: "size-9",
+        "icon-sm": "size-8",
+        "icon-lg": "size-10",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+  )
+
+Don't fonget you can also pass an className and it prcieve it as props and add it in its default className
+
+                  How to Use logo and in Shadcn UI and React
+you can use Lucide
+
+                  Shadcn Custom Theming ---> remember shadcn use oklch
+
+you can add your custom theming and colors
+1- first go to global.css then add your variable in root and don't forget to add it in dark too then you have add a global var you can use in any css file 
+  but we should tell tawlind so go to the @theme inline and Write --specificSufix-nameOfPropertyYouWillUse : var(--theVarYouHaveAdd) --> for Example :
+    
+    @theme inline{
+      // the default styling and vars
+
+      // my vars
+
+
+      --colors-taks-one:var(--task)
+    }
+    
+    root{
+      // the default styling and vars
+
+      // my vars
+      --task : oklch(0.7555 0.1875 231.75)
+    }
+    .dark{
+      // the default styling and vars
+
+      // my vars
+      --task : oklch(0.2908 0.0444 231.75)
+    }
+
+    of you want to use it you can writ className="bg-taks-one"
+
+              The specificSufix You can use in @them inline
+--colors-
+--spacing-
+--radius-
+--font-
+--shadow-
+--blur-
+--opacity-
+--border-
+--size-
+--width-
+--height-
+
+                    What Does mean CN
+it means a short and clear and better way to write conditioned className 
+  means in normal way we writ that className=`${isRounded ?"bg-primary" :"bg-destructive"} ${isLove && "bg-love"}`
+  this way is good but ther is a better way cal CN 
+  so how we can use the Cn 
+  first writ it in obj 
+  className = {cn(
+    "text-blue" ,
+    isRounded ?"bg-primary" :"bg-destructive",
+    isLove && "bg-love",
+    
+    )}  
+
+
+                  What Does mean asChild and sr-only className
+asChild is an attr used in react when you pass an element as child and it will make the problem of hydradion like pass div in p 
+  so we use asChild to give the child the styles of the parent and not redner the parent
+
+sr-only className means no appears for the user but machine can see it to help who have a disable and it increase the accessibility
+
+                  Shadcn Ui Dark Theme ---> recommended go to the documentaion and don't rely on this text completly
+
+first install next-themes by npm install next-themes
+
+2- Create a theme provider
+"use client"
+
+import * as React from "react"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
+
+export function ThemeProvider({
+  children,
+  ...props
+}: React.ComponentProps<typeof NextThemesProvider>) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+}
+3- Wrap your root layout
+Add the ThemeProvider to your root layout and add the suppressHydrationWarning prop to the html tag.
+
+import { ThemeProvider } from "@/components/theme-provider"
+
+export default function RootLayout({ children }: RootLayoutProps) {
+  return (
+    <>
+      <html lang="en" suppressHydrationWarning>
+        <head />
+        <body>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </>
+  )
+}
+
+4- Add a mode toggle
+"use client"
+
+import * as React from "react"
+import { Moon, Sun } from "lucide-react"
+import { useTheme } from "next-themes"
+
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+export function ModeToggle() {
+  const { setTheme } = useTheme()
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="icon">
+          <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+          <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem onClick={() => setTheme("light")}>
+          Light
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("dark")}>
+          Dark
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme("system")}>
+          System
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}
+
+                    Shadcn Ui sidebar ---> recommended use in layout to appear alwaysly
+Structure
+A Sidebar component is composed of the following parts:
+
+SidebarProvider - Handles collapsible state. --------> so it write alone by wrap the whole app in RootLayout
+
+Sidebar - The sidebar container.
+SidebarHeader and SidebarFooter - Sticky at the top and bottom of the sidebar.
+SidebarContent - Scrollable content.
+SidebarGroup - Section within the SidebarContent.
+
+SidebarTrigger - Trigger for the Sidebar. --> button that open or close it
+
+      First Wrap your layout app in SidebarProvider
+
+      then create Your AppSider
+        <Sidebar><SidebarHeader><SidebarContent><SidebarGroup>.........<SidebarFooter>
+      put your AppSider in the RootLayout
+
+
+
+        export default async function RootLayout({ children }) {
+  const cookieStore = await cookies()
+  const defaultOpen = cookieStore.get("sidebar_state")?.value === "true"
+
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <TooltipProvider>
+            <SidebarProvider defaultOpen={defaultOpen}>
+              <div className="flex min-h-screen w-full">
+                <AppSider />
+                <main className="w-full">
+                  <Navbar />
+                  <div className="px-4">
+                    {children}
+                  </div>
+                </main>
+              </div>
+            </SidebarProvider>
+          </TooltipProvider>
+        </ThemeProvider>
+      </body>
+    </html>
+  )
+}
+
+
+              Additional attr or .... to more properties
+1- in sidebar you can use collapsible attr like <Sidebar collapsible="icon"> and side="right|left" and you also can use 
+  defaultOpen={defaultOpen}
+and top of return in RootLayout write const cookieStore = await cookies() ;const defaultOpen = cookieStore.get("sidebar_state")?.value === "true"
+
+2-in SidebarMenuItem you can add <SidebarMenuBadge>24</SidebarMenuBadge>  
+
+            Sort of the SidebarGroup
+          {/* Normal SidebarGroup */}
+        {/* Collapsible SidebarGroup */}
+        {/* sub SidebarGroup */}
+        {/* Action SidebarGroup */}
+
+          🎯 What “group action” Means in shadcn/ui
+
+groupAction is basically a styling behavior used when you have multiple elements that share the same interactive state like hover, focus, disabled, pressed, etc.
+
+It allows child elements to react to a parent group’s state.
+
+Think of it as:
+
+“when this group is hovered/focused/selected, style all children together.”
+------How to use it --> as you add any SidebarGroup but after write <SidebarGroupLabel> Write <SidebarGroupAction>
+     <SidebarGroupLabel>
+       Apps
+      </SidebarGroupLabel>
+      <SidebarGroupAction>
+              <Plus />
+              <span className="sr-only">Add Project</span>
+      </SidebarGroupAction>
+
+      <SidebarGroupContent/>
+
+-----------------> How to use a {/* Collapsible SidebarGroup */}
+as you add a normal SidebarGroup but wrap it with Collapsible component with defaultOpen props 
+  NOTICE ----> you should add <CollapsibleTrigger> in <SidebarGroupLabel>
+  NOTICE ----> you should wrap <SidebarGroupContent> with <CollapsibleContent>
+
+  forExample:
+  <Collapsible defaultOpen className="group/collapsible">
+          <SidebarGroup>
+            <SidebarGroupLabel asChild>
+              <CollapsibleTrigger>
+                Help
+                <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+              </CollapsibleTrigger>
+            </SidebarGroupLabel>
+            <CollapsibleContent>
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild>
+                    <Link href={"/#"}>
+                      <Plus />
+                      Projects
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+                </SidebarGroupContent>
+            </CollapsibleContent>
+          </SidebarGroup>
+        </Collapsible>
+--------------> How to use a {/* sub SidebarGroup */} 
+as the normal sidebar but NOTICE in <SidebarMenuItem> write <SidebarMenuSub> <SidebarMenuSubItem> forExample
+<SidebarMenuItem>
+  <SidebarMenuButton />
+  <SidebarMenuSub>
+    <SidebarMenuSubItem>
+      <SidebarMenuSubButton />
+    </SidebarMenuSubItem>
+    <SidebarMenuSubItem>
+      <SidebarMenuSubButton />
+    </SidebarMenuSubItem>
+  </SidebarMenuSub>
+</SidebarMenuItem>
+
+<SidebarGroup>
+            <SidebarGroupLabel>Nested</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                    <Link href={"/#"}>
+                      <View />
+                      See All Related Task
+                    </Link>
+                  </SidebarMenuButton>
+                  {/* start Nest */}
+                <SidebarMenuSub>
+                  <SidebarMenuSubItem>
+                    <SidebarMenuSubButton>
+                      <Plus/> Add Nest Task
+                    </SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+                  <SidebarMenuSubItem>
+                    <SidebarMenuSubButton>
+                      <Plus/> Add Nest Catagory
+                    </SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+                  
+                </SidebarMenuSub>
+              </SidebarMenuItem>
+            </SidebarGroupContent>
+          </SidebarGroup>
+
+
+////////////////////////////////////////////////////////////////////////
+
+                          Shadcn Charts -------> from rechart library
+
+1-Define your chart config
+Important: Remember to set a min-h-[VALUE] on the ChartContainer component. This is required for the chart to be responsive.
+
+Example : 
+    "use client"
+
+    import { Bar, BarChart } from "recharts"
+
+    import {
+      ChartContainer,
+      type ChartConfig,
+    } from "@/components/ui/chart"
+
+    const chartData = [
+      { month: "January", desktop: 186, mobile: 80 },
+      { month: "February", desktop: 305, mobile: 200 },
+      { month: "March", desktop: 237, mobile: 120 },
+      { month: "April", desktop: 73, mobile: 190 },
+      { month: "May", desktop: 209, mobile: 130 },
+      { month: "June", desktop: 214, mobile: 140 },
+    ]
+
+    const chartConfig = {
+      desktop: {
+        label: "Desktop",
+        color: "#2563eb",
+      },
+      mobile: {
+        label: "Mobile",
+        color: "#60a5fa",
+      },
+    } satisfies ChartConfig
+
+    export function Component() {
+      return (
+        <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
+          <BarChart accessibilityLayer data={chartData}>
+            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
+            <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+          </BarChart>
+        </ChartContainer>
+      )
+    }
+
+2- Add Grid
+    <CartesianGrid vertical={false} />
+
+3- Add X-axis
+<XAxis
+      dataKey="month"//-----> define how to art the data means like a groups
+      tickLine={false}
+      tickMargin={10}
+      axisLine={false}
+      tickFormatter={(value) => value.slice(0, 3)}
+    />
+
+4- Add y-axis
+<YAxis
+      //dataKey="month"
+      tickLine={false}
+      tickMargin={10}
+      axisLine={false}
+      //tickFormatter={(value) => value.slice(0, 3)}
+    />
+
+Chart Config
+The chart config is where you define the labels, icons and colors for a chart.
+
+It is intentionally decoupled from chart data.
+
+This allows you to share config and color tokens between charts. It can also work independently for cases where your data or color tokens live remotely or in a different format.
+
+ok let's rewrite the guid but in short way
+
+1-first define the chart config
+2-then define the chart data
+3-then define the chart container and write config={chartConfig} className="min-h-[200px] w-full"
+4- in chart condition define the BarChart
+then add these before the Bar CartesianGrid
+XAxis
+YAxis
+ChartTooltip
+ChartLegend
+
+5- add the Bar and add dataKey={theData}
+
+BUT DON'T FORGET IT IS recommended to see the documentaion
+
+
+                                  Shadcn Area Chart
+
+like a bar chart but replace the Bar with Area and BarChart with AreaChart and the to fill and get colors not just line you should add linearGradient
+  so what is the linearGradient component <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
+                <stop
+                  offset="5%"
+                  stopColor="var(--color-desktop)"
+                  stopOpacity={0.8}
+                />
+                <stop
+                  offset="95%"
+                  stopColor="var(--color-desktop)"
+                  stopOpacity={0.1}
+                />
+              </linearGradient>
+
+First you add it how many you have data to present ok 
+-then add id and write it in the  fill="url(#fillDesktop)" in the Area component and write stopColor= "var(--color-theSpeceficData) // here is desktop and mobile"
+
+REMEMBER VISTI the documentaion for real info
+
+
+/////////////////////////////
+IF you want to change the data you must change --->
+-of course put your real data
+-change stopColor valu change dataKey in Area
+-id in linearGradient and in fill in Area component
+-stroke in Area component
+-chartConfig if nead
+
+//////////////////////////
+IN SHORTER 
+change Area component and linearGradient component and put your data then change chartConfig if nead
+
+                                        Shadcn Badge
+mean a beautiful label and hook attention reader 
+
+
+                                        Shadcn Card
+the Structure is very simple just see the documentaion
+
+                                        Shadcn Form
+1- define your schema
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+const formSchema = z.object({
+  email:z.string().email(),
+  password:z.string().min(6),
+  userName:z.string().min(2).max(50),
+})
+2- define your form --> use the useForm hook from react-hook-form
+---> import { zodResolver } from "@hookform/resolvers/zod";
+---> import { useForm } from "react-hook-form";
+const form = useForm<z.infer<typeof formSchema>>(
+  {
+    resolver:zodResolver(formSchema),
+    defaultValues:{
+      email:"",
+      password:"",
+      userName:"",
+    },
+  }
+)
+/////////////////////////////////////////////////////// Shadcn Form In SHORTER
+so to do this just 
+
+1- define your schema
+
+
+
+2- define your form --> use the useForm hook from react-hook-form
+
+
+
+const form = useForm<z.infer<typeof formSchema>>(
+
+  {
+
+    resolver:zodResolver(formSchema),
+
+    defaultValues:{
+
+      email:"",
+
+      password:"",
+
+      userName:"",
+
+    },
+
+  }
+
+)
+
+3- write form tag in it <FieldGroup> in it copy control component from sahcn ui documentation and just change the name props and write control component as many you have fields
+
+4- change the value of labels
+
+additional notes if you want to replace the input by any another component like select write it instead input after label component
+
+                                  Data Table in Shadcn Ui
+first generat your folder here is payments
+app
+└── payments
+    ├── columns.tsx
+    ├── data-table.tsx
+    └── page.tsx
+---columns.tsx (client component) will contain our column definitions.
+---data-table.tsx (client component) will contain our <DataTable /> component.
+---page.tsx (server component) is where we'll fetch data and render our table.
+
+async the data in your page.tsx  forExample:
+  const getData = async ():Promise<[]> =>{
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts")
+    const data = await response.json()
+    return data
+  }
+NOTE WE should define the type of the Promise so we will define it in column.tsx file
+
+                        /*        column.tsx      */
+export type Payment = {
+  // your types
+  id: string
+  amount: number
+  status: "pending" | "processing" | "success" | "failed"
+  email: string
+  username:string
+}
+
+                    /*          page.tsx                 */
+
+  const getData = async ():Promise<Payment[]> =>{
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts")
+    const data = await response.json()
+    return data
+ }
+
+const getData = async ():Promise<Payment[]> =>{
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts")
+    const data = await response.json()
+    return data
+ }
+async function page() {
+  
+ const data = await getData()
+  return (
+    <DataTable columns={columns} data={data} />
+  )
+}
+
+then define the type of the columns
+                          /*           column.tsx             */
+export const columns: ColumnDef<Payment>[] = [
+  {
+    accessorKey: "username",
+    header: "Username",
+  },
+  {
+    accessorKey: "email",
+    header: "Email",
+  },
+  {
+    accessorKey: "status",
+    header: "Status",
+  },
+  {
+    accessorKey: "amount",
+    header: "Amount",
+  },
+]
+NOTE you can edit it to suit your data 
+DON"T FORGET add "use client" at the top of the column.tsx file
+   copy the columns.tsx from documentaion and paste it in your columns.tsx file and modify the types to suit your data
+
+                        /*          data-table.tsx             */
+
+define the data-table file
+  jsut copy it from shadcn ui documentation and paste it in your data-table.tsx file
+
+                        /*          page.tsx                 */
